@@ -1,4 +1,5 @@
 # electron-app
+<<<<<<< HEAD
 
 ## Project setup
 ```
@@ -27,3 +28,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+a electron project for study
+>>>>>>> 00cad816e3997a032dff3a9706573df6d322572c
