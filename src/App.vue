@@ -4,10 +4,21 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
+    <a href="#" id="drag">item</a>
     <router-view/>
   </div>
 </template>
-
+<script>
+import {ipcRenderer} from 'electron';
+export default {
+  mounted(){
+     document.getElementById('drag').ondragstart = (event) => {
+    event.preventDefault()
+    ipcRenderer.send('ondragstart', '/path/to/item')
+  }
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
