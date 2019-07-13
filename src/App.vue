@@ -13,9 +13,9 @@ import {ipcRenderer} from 'electron';
 export default {
   mounted(){
      document.getElementById('drag').ondragstart = (event) => {
-    event.preventDefault()
-    ipcRenderer.send('ondragstart', '/path/to/item')
-  }
+      event.preventDefault()
+      ipcRenderer.send('ondragstart', '/path/to/item')
+    }
   }
 }
 </script>
