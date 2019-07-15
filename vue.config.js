@@ -63,9 +63,9 @@ css: {
   productionSourceMap:false,
   crossorigin:undefined,
   integrity:false,
-  devServer:{//代理
-      port:8086,
-      proxy:'http://192.168.255.201:8082'
-  }
+  // devServer:{//代理
+  //     port:8086,
+  //     proxy:'http://192.168.255.201:8082'
+  // }
 
 }

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -15,7 +15,12 @@ export default {
      document.getElementById('drag').ondragstart = (event) => {
       event.preventDefault()
       ipcRenderer.send('ondragstart', '/path/to/item')
-    }
+    };
+    // window.oncontextmenu=function(e){
+    //   e.preventDefault();
+    //   console.log(111)
+    //   ipcRenderer.send("signShowRightClickMenu","test")
+    // }
   }
 }
 </script>
