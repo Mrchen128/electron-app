@@ -1,0 +1,35 @@
+html,body,div,p,a,
+span,h1,h2,h3,h4,h5,
+h6,ul,ol,li,i,em,strong,
+input,form,select,table,
+tr,td,th,b,img,dl,dd,dt,
+caption,fieldset,legend,
+hr,br,option,textarea,label{
+		/***集体声明 清除  重置  页面所有元素的 默认margin和 padding*******/
+
+		margin: 0;
+		padding: 0;
+		border: none;
+		outline: none;
+	}
+
+ body{
+ 	font-family : 'Microsoft YaHei' ,Arial ;
+ }
+ ul,ol,li{
+ 	list-style: none;  /*******清除ul ol li 前面的项目符号***************/
+ }
+ a{
+ 	text-decoration: none;
+ 	color:black;/*********超链接下划线*********************/
+ }
+ .clearfix::after{
+	 content:".";
+	 height:0;
+	 clear:both;
+	 visibility: hidden;
+	 display: block;
+ }
+
+ /****************以上都是 整个页面 公共声明 ***************************/
+

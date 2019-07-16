@@ -2,14 +2,20 @@
   <div class="about">
     <h1 @click="alertNotify">This is an about page</h1>
     <Button @click="success">测试</Button>
+     <InputNumber :min="1" :max="10" v-model="value" @change="onChange" />
   </div>
 </template>
 <script>
-import { Button,message } from 'ant-design-vue';
+import { Button,message,InputNumber } from 'ant-design-vue';
 import ws from "@/webSocket"
 import {remote} from "electron";
 
 export default {
+  data(){
+    return {
+      value:""
+    }
+  },
   methods:{
     alertNotify(){
         let myNotification = new Notification('标题', {
@@ -23,6 +29,9 @@ export default {
     success () {
       message.success("this is a success message")
     },
+    onChange(){
+
+    }
   },
   created(){
     
@@ -76,7 +85,11 @@ export default {
     }, false);
   },
   components:{
-    Button
+    Button,InputNumber
   }
 }
 </script>
+<style lang="less" scoped>
+
+</style>
+

@@ -5,8 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "electron:build": "vue-cli-service electron:build",
+    "win": "vue-cli-service electron:build --arch=x64",
     "electron:serve": "vue-cli-service electron:serve",
+    "mac": "vue-cli-service electron:build --platform=mac --arch=x64",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps"
   },
