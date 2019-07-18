@@ -32,12 +32,12 @@ ipcMain.on('getmessage',(event)=>{
   })
 
 
-ipcMain.on("ondragstart", (event, filePath) => {
-    event.sender.startDrag({
-      file: filePath,
-      icon: "/path/to/icon.png"
-    });
-});
+// ipcMain.on("ondragstart", (event, filePath) => {
+//     event.sender.startDrag({
+//       file: filePath,
+//       icon: "/path/to/icon.png"
+//     });
+// });
 
 
 ipcMain.on('signShowRightClickMenu', (event) => {

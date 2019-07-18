@@ -11,7 +11,7 @@
 
 <script>
 // @ is an alias to /src
-import ws from "@/webSocket"
+import {ws,heartCheck} from "@/webSocket"
 import {ipcRenderer} from 'electron';
 
 export default {
@@ -33,11 +33,13 @@ export default {
       {
       // Web Socket 已连接上，使用 send() 方法发送数据
       // ws.send("测试")
+      heartCheck.reset().start()
   };
     ws.onmessage =(evt)=>{
       var received_msg = evt.data;
       this.valueList.push(received_msg)
-      ipcRenderer.send('getmessage')
+      // ipcRenderer.send('getmessage')
+      heartCheck.reset().start()
     
     }
     ws.onclose=()=>{
@@ -47,14 +49,23 @@ export default {
   },
   methods:{
     send(){
+      console.log(ws)
       if(this.isClose){
         console.log("已经关闭")
       }else{
-         ws.send(this.value);
+         ws.send(JSON.stringify({
+          type: 1,
+          date: Date.now(),
+          msg: this.value,
+          nickname: '陈绍辉'
+      }));
          this.value="";
       }
        
     }
+  },
+  destroyed(){
+    ws.close();
   },
   components: {
     
