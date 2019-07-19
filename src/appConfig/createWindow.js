@@ -1,8 +1,8 @@
 import { BrowserWindow,dialog,Menu,app } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
+import {T} from "./ipcMain"
   
 let win=null;
-let T=null;
 function createMenu() {
     // darwin表示macOS，针对macOS的设置
     // if (process.platform === "darwin") {
@@ -78,16 +78,19 @@ function createWindow() {
       );
     });
     win.on("show",function(){
-       clearInterval(T)
-       T=null;
-    })
+    
+        clearInterval(T)
+   
+       console.log('show')
+    })//窗口从隐藏出现事件
     win.on('restore',function(){
-  
-      clearInterval(T);
-      T=null;
-  
-    })
-    createMenu();
+   
+        clearInterval(T)
+    
+      console.log('restore')
+    })//窗口从最小化到最大化事件
+
+    createMenu();//生成菜单
 
 }
 

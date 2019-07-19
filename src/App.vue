@@ -1,12 +1,17 @@
 <template>
   <div id="app" >
     <div class="chat-room">
-        <ul class="other">
-          <li v-for="(item,index) in otherChatList" :key='index'>{{item.msg}}</li>
-        </ul>
-        <ul class="mine">
-          <li v-for="(item,index) in mineChatList" :key='index'>{{item.msg}}
-            
+        <ul>
+          <li v-for="(item,index) in mineChatList" :key='index' :class="name==item.nickname?'mine':''" >
+              <div>
+                <img src="./assets/logo.png" alt=""  class="head-portrait">
+                <span>{{item.nickname}}</span>
+              </div>
+              
+              <div>
+                <div>{{item.date}}</div>
+                <div>{{item.msg}}</div>
+              </div>
           </li>
         </ul>
     </div>
@@ -15,15 +20,16 @@
       title="昵称"
       :visible="visible"
       @ok="handleOk"
+      @cancel="handleCancel"
     >
      <Input placeholder="请输入昵称" v-model="name"/>
     </Modal>
   </div>
 </template>
 <script>
-import {ipcRenderer} from 'electron';
-import {ws,heartCheck} from "./webSocket"
-import {Modal,Input} from "ant-design-vue"
+import {ipcRenderer,remote} from 'electron';
+import {ws,heartCheck} from "./webSocket";
+import {Modal,Input} from "ant-design-vue";
 export default {
   data(){
     return {
@@ -47,12 +53,11 @@ export default {
       let obj = JSON.parse(received_msg);
       if(obj.type==2){
         console.log(obj)
-        if(obj.nickname==this.name){
+
             this.mineChatList.push(obj)
-        }else{
-            this.otherChatList.push(obj);
-        }
-      
+            ipcRenderer.send("getmessage")
+        
+
       }
       
       this.value="";
@@ -86,6 +91,9 @@ export default {
     handleOk(){
       console.log(this.name)
         this.visible=false;
+    },
+    handleCancel(){
+      remote.app.quit()
     }
   },
   components:{
@@ -109,16 +117,20 @@ a{
   height: 70vh;
   // border: 1px solid red;
   box-sizing: border-box;
-  display: flex;
-  .other{
-    flex: 1;
-  }
-   .mine{
-    flex: 1;
-    text-align: right;
-  }
-  li{
-    margin:20px;
+
+  ul{
+    padding:20px;
+    box-sizing: border-box;
+    width: 100%;
+    li{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    li.mine{
+      // justify-content: flex-end;
+      flex-direction: row-reverse;
+    }
   }
 }
 .chat-input{
@@ -130,6 +142,9 @@ a{
   border: 1px solid greenyellow;
   box-sizing: border-box;
   padding: 30px;
-
+}
+.head-portrait{
+  width: 20px;
+  height: 20px;
 }
 </style>

@@ -3,12 +3,13 @@ import {tray} from "./tray";
 import {trayIconUrl,isDevelopment} from "./config";
 import {win} from "./createWindow";
 import path from "path";
-let T;
+let T=-1;
 
 ipcMain.on('getmessage',(event)=>{
+  console.log(11)
     var count = 0;
     if(!win.isVisible()){
-        if(!T){
+       
           T = setInterval(function() {
               count++;
               if (count%2 == 0) {
@@ -20,14 +21,14 @@ ipcMain.on('getmessage',(event)=>{
                
               } else {
                 if(isDevelopment){
-                  tray.setImage(path.join(trayIconUrl, '../public/qie.png'))
+                  tray.setImage(path.join(trayIconUrl, '../public/qie.jpg'))
                 }else{
                    tray.setImage(path.join(trayIconUrl, 'qie.jpg'))
                 }
                
               }
           }, 500);
-        }
+       
       }
   })
 
@@ -61,4 +62,5 @@ ipcMain.on('signShowRightClickMenu', (event) => {
   const win = BrowserWindow.fromWebContents(event.sender);
   menu.popup(win);
 });
-  
+
+export {T}

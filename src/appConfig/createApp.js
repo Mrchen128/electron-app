@@ -4,7 +4,6 @@ import {createWindow,win} from "./createWindow";
 import {createTray} from "./tray";
 import {isDevelopment} from "./config"
 
-
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
     {
@@ -29,7 +28,8 @@ app.on("ready", async () => {
     createTray();
     
     createWindow();
-  });
+    
+});
   
   
   app.on("window-all-closed", () => {
