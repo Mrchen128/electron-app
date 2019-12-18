@@ -41,6 +41,7 @@ export default {
     }
   },
   created(){
+    console.log(navigator.userAgent)
     this.visible=true;
     ws.onopen=()=>{
       console.log('打开了')
